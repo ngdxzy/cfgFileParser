@@ -72,12 +72,8 @@ Thirdly, load the configuration file by calling the `interpret` function of the 
 configs = cfgParser.interpret("demo.cfg");
 ```
 
-The returning value is a Matlab container object that allows using a string to index it. Since it is slow to index with a string, it is recommended to define a value to receive a certain configuration as follows:
+The returning value is a Matlab container object that allows using a string to index it. In addition, all configuration variables will be generated in Matlab 'base' workspace for user to use them (`evalin('base', "commands")` function is used).
 
-```matlab
-obs_row = configs('obs_row')
-obs_col = configs('obs_col')
-```
 
 Notice that if you only want to generate C++ files, do not call the `interpret` function or the default value may be changed after the configuration file is read.
 

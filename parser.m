@@ -154,6 +154,8 @@ classdef parser < handle
                     cfg(obj.argumentContextList{i}.argName{j}) = obj.argumentContextList{i}.argVal{j};
                     fprintf("\t%s: ", obj.argumentContextList{i}.argName{j})
                     disp(obj.argumentContextList{i}.argVal{j})
+                    % create varibles in global
+                    evalin('base', [obj.argumentContextList{i}.argName{j} ,'=', num2str(obj.argumentContextList{i}.argVal{j}), ';'])
                 end
             end
         end
