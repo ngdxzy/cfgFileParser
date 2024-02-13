@@ -155,7 +155,11 @@ classdef parser < handle
                     fprintf("\t%s: ", obj.argumentContextList{i}.argName{j})
                     disp(obj.argumentContextList{i}.argVal{j})
                     % create varibles in global
-                    evalin('base', [obj.argumentContextList{i}.argName{j} ,'=', num2str(obj.argumentContextList{i}.argVal{j}), ';'])
+                    if obj.argumentContextList{i}.unique
+                        evalin('base', [obj.argumentContextList{i}.argName{j} ,'=', num2str(obj.argumentContextList{i}.argVal{j}), ';'])
+                    else
+                        evalin('base', [obj.argumentContextList{i}.argName{j} ,'= [', num2str(obj.argumentContextList{i}.argVal{j}), '];'])
+                    end
                 end
             end
         end
