@@ -156,7 +156,11 @@ classdef parser < handle
                     disp(obj.argumentContextList{i}.argVal{j})
                     % create varibles in global
                     if obj.argumentContextList{i}.unique
-                        evalin('base', [obj.argumentContextList{i}.argName{j} ,'=', num2str(obj.argumentContextList{i}.argVal{j}), ';'])
+                        if strcmp(obj.argumentContextList{i}.argType{j}, "string")
+                            evalin('base', [obj.argumentContextList{i}.argName{j} ,'="', num2str(obj.argumentContextList{i}.argVal{j}), '";'])
+                        else
+                            evalin('base', [obj.argumentContextList{i}.argName{j} ,'=', num2str(obj.argumentContextList{i}.argVal{j}), ';'])
+                        end
                     else
                         evalin('base', [obj.argumentContextList{i}.argName{j} ,'= [', num2str(obj.argumentContextList{i}.argVal{j}), '];'])
                     end
